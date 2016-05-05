@@ -27,6 +27,18 @@
    Bounds: [lower = 0x7fffffffc390, upper = 0x7fffffffc3a3]
    0x0000000000400d7c in upper () at i386-mpx-sigsegv.c:68
 
+* Support for running interpreters on separate channels
+
+  GDB now supports a new mechanism that allows frontends to provide
+  fully featured GDB console views, as a better alternative to
+  building such views on top of the "-interpreter-exec console"
+  command.  See the new "new-ui" command below.  With that command,
+  frontends can now start GDB in console mode running on an embedded
+  terminal widget, and open a separate MI channel for the usual MI
+  control and synchronization invisible to the user.  In this way, GDB
+  handles line editing, history, tab completion, etc. in the console
+  all by itself.
+
 * New commands
 
 skip -file file
@@ -39,6 +51,10 @@ skip -rfunction regular-expression
 
 maint info line-table REGEXP
   Display the contents of GDB's internal line table data struture.
+
+new-ui INTERP TTY
+  Start a new user interface instance running INTERP as interpreter,
+  using the TTY file for input/output.
 
 * Support for tracepoints and fast tracepoints on s390-linux and s390x-linux
   was added in GDBserver, including JIT compiling fast tracepoint's
