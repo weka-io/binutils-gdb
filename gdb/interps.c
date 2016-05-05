@@ -606,6 +606,16 @@ top_level_interpreter_data (void)
   return interp->data;
 }
 
+/* See interps.h.  */
+
+struct interp *
+current_interpreter (void)
+{
+  struct ui_interp_info *ui_interp = get_current_interp_info ();
+
+  return ui_interp->current_interpreter;
+}
+
 /* This just adds the "interpreter-exec" command.  */
 void
 _initialize_interpreter (void)
