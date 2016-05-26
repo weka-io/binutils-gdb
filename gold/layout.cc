@@ -889,6 +889,11 @@ Layout::get_output_section(const char* name, Stringpool::Key name_key,
 bool
 Layout::keep_input_section(const Relobj* relobj, const char* name)
 {
+  // WEKA HACK - keep sections with "__keep" in their name
+  if (strstr(name, "__keep")) {
+    return true;
+  }
+
   if (! this->script_options_->saw_sections_clause())
     return false;
 
